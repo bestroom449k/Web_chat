@@ -5,6 +5,12 @@
      - Codex 확장기능
    - Git
    - Node.js
+
    ```shell
    node server.js
    ```
+
+   2. 정적 파일(html, css, js)서버
+      - sever.js
+        - server = http.createServer()
+        - server.listen()
