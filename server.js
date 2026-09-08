@@ -19,7 +19,12 @@ const MIME_TYPES = {
   ".ico": "image/x-icon",
 };
 
-function send(res, statusCode, body, contentType = "text/plain; charset=utf-8") {
+function send(
+  res,
+  statusCode,
+  body,
+  contentType = "text/plain; charset=utf-8",
+) {
   res.writeHead(statusCode, { "Content-Type": contentType });
   res.end(body);
 }
@@ -32,7 +37,9 @@ const server = http.createServer((req, res) => {
 
   let requestedPath;
   try {
-    requestedPath = decodeURIComponent(new URL(req.url, `http://${req.headers.host || HOST}`).pathname);
+    requestedPath = decodeURIComponent(
+      new URL(req.url, `http://${req.headers.host || HOST}`).pathname,
+    );
   } catch {
     return send(res, 400, "Bad Request");
   }
@@ -46,11 +53,18 @@ const server = http.createServer((req, res) => {
   fs.stat(filePath, (statError, stats) => {
     if (statError || !stats.isFile()) return send(res, 404, "Not Found");
 
-    const contentType = MIME_TYPES[path.extname(filePath).toLowerCase()] || "application/octet-stream";
-    res.writeHead(200, { "Content-Type": contentType, "Content-Length": stats.size });
+    const contentType =
+      MIME_TYPES[path.extname(filePath).toLowerCase()] ||
+      "application/octet-stream";
+    res.writeHead(200, {
+      "Content-Type": contentType,
+      "Content-Length": stats.size,
+    });
     if (req.method === "HEAD") return res.end();
 
-    fs.createReadStream(filePath).on("error", () => res.destroy()).pipe(res);
+    fs.createReadStream(filePath)
+      .on("error", () => res.destroy())
+      .pipe(res);
   });
 });
 
