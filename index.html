@@ -1,16 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web chat</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    Hello, world!
-    
-        <script src="client.js"></script>
-    
-</body>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <div id="app">
+  <body>
+    <header>
+      <h1>실시간 웹챗</h1>
+    </header>
+    <ul id="messages">
+      <li>안녕하세요</li>
+    </ul>
+
+    <form id="chat-form">
+      <input
+        type="text"
+        id="chat-input"
+        placeholder="메시지를 입력하세요."
+        autocomplete="off"
+      />
+      <button type="submit">↑</button>
+    </form>
+    </div>
+    <script src="client.js"></script>
+  </body>
 </html>

@@ -14,7 +14,14 @@
       - sever.js
         - server = http.createServer()
         - server.listen()
-      - index.html
-      - reset.css
+        - index.html
+        - #app
+          - header
+          - ul#messages
+          - input#chat-input
+          - button
+        - reset.css
+        - -
+        - ulS
       - style.css
       - client.js
