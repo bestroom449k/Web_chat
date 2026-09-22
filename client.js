@@ -15,8 +15,20 @@ chatForm.addEventListener("submit", (event) => {
 
   if (!message) return; //메시지가 빈칸이면 return
 
+  ws.send(message); // 서버로 message 날리기
   addMessage(message);
 
   chatInput.value = "";
   chatInput.focus();
 });
+
+// -------------------- Welcome WebSocket World-----------------------
+const ws = new WebSocket(`ws://${location.host}`);
+
+// ws.on("open", () => {});
+ws.onopen = () => {
+  console.log("서버 연결");
+};
+ws.onclose = () => {
+  console.log("서버 연결 해제");
+};

@@ -167,16 +167,46 @@ form button:first-child {
   flex-direction: column;
   overflow: hidden;
   background: var(--surface);
-  border: 1px solid rgba(255, 255, 255, .85);
+  border: 1px solid rgba(255, 255, 255, 0.85);
   border-radius: 26px;
-  box-shadow: 0 24px 70px rgba(33, 45, 78, .16), 0 4px 12px rgba(33, 45, 78, .05);
-  animation: app-in .45s ease-out both;
+  box-shadow:
+    0 24px 70px rgba(33, 45, 78, 0.16),
+    0 4px 12px rgba(33, 45, 78, 0.05);
+  animation: app-in 0.45s ease-out both;
 }
-#app > header, #app > ul, #app > form { width: 100%; }
-#app > header { flex: 0 0 88px; border-radius: 0; }
-#app > ul { flex: 1; min-height: 0; height: auto; }
-#app > form { flex: 0 0 auto; border-radius: 0; }
-@keyframes app-in { from { opacity: 0; transform: translateY(12px) scale(.985); } to { opacity: 1; transform: none; } }
+#app > header,
+#app > ul,
+#app > form {
+  width: 100%;
+}
+#app > header {
+  flex: 0 0 88px;
+  border-radius: 0;
+}
+#app > ul {
+  flex: 1;
+  min-height: 0;
+  height: auto;
+}
+#app > form {
+  flex: 0 0 auto;
+  border-radius: 0;
+}
+@keyframes app-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
 @media (max-width: 600px) {
-  #app { width: 100%; height: 100vh; min-height: 0; border-radius: 0; }
+  #app {
+    width: 100%;
+    height: 100vh;
+    min-height: 0;
+    border-radius: 0;
+  }
 }

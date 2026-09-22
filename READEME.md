@@ -10,20 +10,30 @@
    node server.js
    ```
 
-   2. 정적 파일(html, css, js)서버
-      - sever.js
-        - server = http.createServer()
-        - server.listen()
-        - index.html
-        - #app
-          - header
-          - ul#messages
-          - input#chat-input
-          - button
-        - reset.css
-        - -
-        - ulS
-      - style.css
+2. 정적 파일(html, css, js)서버
+   - sever.js
+     - server = http.createServer()
+     - server.listen()
+     - index.html
+     - #app
+       - header
+       - ul#messages
+       - input#chat-input
+       - button
+     - reset.css
+     - -
+     - ulS
+   - style.css
+   - client.js
+     - addEventListener("submit", (event) => {})
+     - addMesessge()
+
+3. WebSocket
+   1. `npm install ws`
+      - WebSocketServer, WebSocket
+      - server.js
+        - wss.on("connection", (ws) => {});
+          - ws.on("close", () => {});
       - client.js
-        - addEventListener("submit", (event) => {})
-        - addMesessge()
+        - ws.onopen = () => {};
+        - ws.onclose = () => {};
