@@ -76,6 +76,7 @@ server.listen(PORT, HOST, () => {
 
 //---------------------Welcome WebSocketServer World------------------------
 const { WebSocketServer } = require("ws");
+const { json } = require("stream/consumers");
 
 // http 서버: 정적 파일(html, css, js, ...) 서비스
 // WebSocket 서버: 실시간 서비스
@@ -85,7 +86,19 @@ wss.on("connection", (ws) => {
   console.log("클라이언트 연결");
   //client 에서 send 한 것을 받는 위치
   ws.on("message", (data) => {
-    console.log(data.toString());
+    //console.log(data.toString());
+    let json;
+    try {
+      json = JSON.parse(data); //string -> json
+    } catch (error) {
+      return; // 이상한 메시지 무시(안그러면 서버 die)
+    }
+
+    switch (json.type) {
+      case "chat":
+        console.log("chat 수신 :", json.text);
+        break;
+    }
   });
   ws.on("close", () => {
     console.log("클라이언트 연결 해제");
