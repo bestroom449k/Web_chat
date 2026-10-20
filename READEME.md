@@ -40,3 +40,17 @@
           - ws.send({type : "message", text}); //json -> string
         - ws.onopen = () => {};
         - ws.onclose = () => {};
+   2. Broadcast //방송
+   - client A -> Server -> 모든 클라이언트
+   - client B -> Server -> 모든 클라이언트
+   - server.js
+     - 연결된 client들 목록
+       - wss.on("connection",) 할 때, client 추가
+       - ws.on("close",) 할 떼 client 삭제
+     - message 수신 -> broadcastmessage 객체 -> broadcast()
+       - broadcastmessage 객체 = {type, text, id, timestamp}
+       - broadcast() = client 목록에서 WebSocket.OPEN인 client에게 send()
+   - client.js
+   - message 송신 -> Server: send() when submit
+
+- message 수신(onmessage()) -> addMessage()
