@@ -1,11 +1,28 @@
 const chatForm = document.querySelector("#chat-form");
 const chatInput = document.querySelector("#chat-input");
 const messages = document.querySelector("#messages");
+chatInput.focus();
 
 function addMessage(senderNickname, message) {
-  const li = document.createElement("li");
-  li.textContent = senderNickname + ":" + message;
+  const li = document.createElement("li"); //<li> <li>
+  // <li> 닉네임 : 메시지<li>
+  if (senderNickname !== nickname) {
+    const nicknameDiv = document.createElement("div");
+
+    nicknameDiv.classList.add("nickname");
+
+    nicknameDiv.textContent = senderNickname;
+
+    li.appendChild(nicknameDiv);
+  } //<ul id ="messages"><li>닉네임 : 메시지</li></ul>
+  //<<li><div class "nickname">닉네임</div>메시지</li>
+  else {
+    li.classList.add("mine");
+  }
+  li.append(message);
   messages.appendChild(li);
+
+  //시간 <span class= "time">시간</span>
 }
 
 chatForm.addEventListener("submit", (event) => {
@@ -26,7 +43,7 @@ chatForm.addEventListener("submit", (event) => {
 // -------------------- Welcome WebSocket World-----------------------
 const ws = new WebSocket(`ws://${location.host}`);
 
-const nickname = prompt("당신의 닉네임을 입력 하세요.").trim() || "익명";
+const nickname = prompt("당신의 닉네임을 입력 하세요.")?.trim() || "익명";
 
 // ws.on("open", () => {});
 ws.onopen = () => {
@@ -42,7 +59,7 @@ ws.onmessage = (event) => {
     case "chat":
       //팝업 화면에 json.text을 보여 주자
       console.log(json.nickname);
-      addMessage(nickname, json.text);
+      addMessage(json.nickname, json.text);
       break;
   }
 };

@@ -33,7 +33,6 @@ const server = http.createServer((req, res) => {
   if (req.method !== "GET" && req.method !== "HEAD") {
     res.setHeader("Allow", "GET, HEAD");
     return send(res, 405, "Method Not Allowed");
-    ㅆ;
   }
 
   let requestedPath;
@@ -113,6 +112,7 @@ wss.on("connection", (ws) => {
       case "join":
         console.log("nickname 수신", json.text);
         users.set(ws, { nickname: json.text });
+        break;
       case "chat":
         console.log("chat 수신 :", json.text);
         //nickname 알아내기 : ws -> ws-{nickname}에서 찾아서 ->nickname 속성에 넣기
